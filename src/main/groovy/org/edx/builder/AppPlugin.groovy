@@ -12,20 +12,24 @@ class AppPlugin implements Plugin<Project> {
     
     def addTasks(project) {
         def helper = new TaskHelper()
-        project.task('printConfigPath') << {
+        project.task('printConfigPath') {
             description = "Print the path to the configuration as determined by the edx.properties file"
+        } << {
             println "Your current configuration path is " + project.edx.dir
         }
 
-        project.task('printConfigFiles') << {
+        project.task('printConfigFiles') {
             description = "Print the files that will combine into the current configuration"
+        } << {
             helper.printConfigFiles(project)
         }
 
-        project.task('printConfig') << {
+        project.task('printConfig') {
             description = "Print the current configuration"
+        } << {
             helper.printConfig(project)
         }
+
         project.task('format') {
             description = "Formats the source according to the project standard"
         } << {
@@ -43,7 +47,7 @@ class AppPlugin implements Plugin<Project> {
         }
 
         // then actually load them
-        def configPath = project.uri(project.edx.dir + '/' + 'edx.properties)
+        def configPath = project.uri(project.edx.dir + '/' + 'edx.properties')
         try {
             project.apply from: configPath
         }
