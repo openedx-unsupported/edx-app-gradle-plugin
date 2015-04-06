@@ -3,7 +3,17 @@ repositories {
 }
 
 dependencies {
-    compile 'org.codehaus.groovy:groovy-all:2.+'
     compile gradleApi()
     compile 'org.yaml:snakeyaml:1.14'
 }
+
+buildscript {
+    dependencies {
+        classpath 'org.codehaus.groovy:groovy:2.+'
+    }
+
+    repositories {
+        mavenCentral()
+    }
+}
+
