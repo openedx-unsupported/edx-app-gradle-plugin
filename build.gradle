@@ -5,7 +5,10 @@ repositories {
 dependencies {
     compile gradleApi()
     compile 'org.yaml:snakeyaml:1.14'
+    compile 'org.codehaus.groovy:groovy-all:2.+'
 }
+
+apply plugin: "groovy"
 
 buildscript {
     dependencies {
