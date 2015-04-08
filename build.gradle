@@ -6,11 +6,11 @@ dependencies {
     compile gradleApi()
     compile 'org.yaml:snakeyaml:1.14'
     compile 'org.codehaus.groovy:groovy-all:2.+'
-i}
+}
 
 buildscript {
     dependencies {
-        classpath 'org.codehaus.groovy:groovy:2.+'
+        classpath 'org.codehaus.groovy:groovy-all:2.+'
     }
 
     repositories {
