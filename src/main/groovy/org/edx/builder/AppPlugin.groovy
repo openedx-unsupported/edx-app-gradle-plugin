@@ -40,7 +40,10 @@ class AppPlugin implements Plugin<Project> {
     private def loadPluginConfiguration(project) {
         // first find out where the more specific properties are
         try {
-            project.apply from: project.file('edx.properties')
+            def configFile = project.file('edx.properties')
+            if (configFile.exists()) {
+                project.apply from: configFile
+            }
         }
         catch(GradleException e) {
             println "Could not load edx.properties, using default configuration"
