@@ -3,8 +3,9 @@ package org.edx.builder
 import org.gradle.api.*
 
 class AppPlugin implements Plugin<Project> {
-    
-    def void apply(project) {
+
+    @Override
+    void apply(Project project) {
         project.extensions.create("edx", Configuration)
         loadPluginConfiguration(project)
         addTasks(project)
@@ -14,25 +15,25 @@ class AppPlugin implements Plugin<Project> {
         def helper = new TaskHelper()
         project.task('printConfigPath') {
             description = "Print the path to the configuration as determined by the edx.properties file"
-        } << {
+        } doLast {
             println "Your current configuration path is " + project.edx.dir
         }
 
         project.task('printConfigFiles') {
             description = "Print the files that will combine into the current configuration"
-        } << {
+        } doLast {
             helper.printConfigFiles(project)
         }
 
         project.task('printConfig') {
             description = "Print the current configuration"
-        } << {
+        } doLast {
             helper.printConfig(project)
         }
 
         project.task('format') {
             description = "Formats the source according to the project standard"
-        } << {
+        } doLast {
             def files = project.edx.activeConfig.getSrcFiles(project)
             helper.format(project, files)
         }
@@ -59,6 +60,4 @@ class AppPlugin implements Plugin<Project> {
             throw e
         }
     }
-
-
 }
